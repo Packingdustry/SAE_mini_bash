@@ -13,8 +13,13 @@ void mbash();
 int main(int argc, char** argv) {
   while (1) {
     printf("Commande: ");
-    fgets(cmd, MAXLI, stdin);
-    mbash(cmd);
+    char* eof = fgets(cmd, MAXLI, stdin);
+    if (eof == NULL || strcmp(cmd, "exit\n") == 0) {
+      printf("\n");
+      exit(0);
+    } else {
+      mbash(cmd);
+    }
   }
   return 0;
 }
